@@ -9,9 +9,21 @@ class App extends Component {
     this.state = {
       title: " "
     }
+    this.getGif = this.getGif.bind(this)
   }
 
+  getGif(){
+    fetch("https://icanhazdadjoke.com/", {
+      headers: {
+        Accept: "application/json"
+      }
+    }).then(response => response.json())
+    .then(jsonData => {
+      console.log(jsonData)
+      this.setState({joke: jsonData.joke })
+    })
 
+}
 
 
   render() {
