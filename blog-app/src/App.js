@@ -3,45 +3,36 @@ import './App.css';
 import Home from './Home'
 import {  Route , Link, Switch } from 'react-router-dom'
 
+// what I want to do first is to have api of imgs and when the next button is clicked then different ones are shown. 
+// like dad jokes but instead of jokes it will be imgs 
+
+
 class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      title: " "
-    }
-    this.getGif = this.getGif.bind(this)
-  }
+ 
 
-  getGif(){
-    fetch("https://icanhazdadjoke.com/", {
-      headers: {
-        Accept: "application/json"
-      }
-    }).then(response => response.json())
-    .then(jsonData => {
-      console.log(jsonData)
-      this.setState({joke: jsonData.joke })
-    })
-
-}
+ 
 
 
   render() {
     return (
       <div className="App">
+      
        <nav>
-       <Link to="/" >
+       <Link to="/gif" >
             <h1>Gify</h1>
        </Link> 
       </nav>
 
+                <h1> Welcome to Gify Page </h1>
        <main>
-           <Switch>
-              <Route path="/" exact render={() => <Home title={this.state.title}/>} /> 
-              {/* <Route /> */}
-           </Switch>
+             <Switch>
 
+              <Route path="/gif"  render={() => <Home {...this.state}/>} /> 
+              {/* <Route path="/" component= {App}/> */}
+              </Switch>
+           
        </main>
+       
       </div>
     );
   }

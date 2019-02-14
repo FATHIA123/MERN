@@ -5,15 +5,25 @@ import React, { Component } from 'react';
 // import App from './App'
 
 class Home extends Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+          gif: " ",
+          title: " "
+        }
+        this.getGif = this.getGif.bind(this)
+      }
+    
     getGif(){
-        fetch("https://icanhazdadjoke.com/", {
+        fetch("http://api.giphy.com/v1/gifs/random?tag=funny+cat&rating=g&api_key=9Phn04eIwyARjPxr10LBRbnmXh3FpU79", {
           headers: {
             Accept: "application/json"
           }
         }).then(response => response.json())
         .then(jsonData => {
-          console.log(jsonData)
-          this.setState({joke: jsonData.joke })
+          console.log(jsonData.data.slug)
+          this.setState({gif: jsonData.data.images.downsized.url })
+          this.setState({ title: jsonData.data.slug})
         })
     
     }
@@ -21,11 +31,12 @@ class Home extends Component {
 
         return (
             <div>
-                <div>title: {this.props.title }</div>
-                <div>createdAt: {this.props.title }</div>
-                <div>description: {this.props.title }</div>
 
-                <button onClick="getGif">Next</button>
+                <img src={this.state.gif} alt=""/>
+                 
+                 <h1> title: {this.state.title} </h1>
+
+                 <button onClick={this.getGif}>New Gif </button>
             </div>
         );
     }
