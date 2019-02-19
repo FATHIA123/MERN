@@ -27,7 +27,7 @@ class App extends Component {
        <main>
              <Switch>
 
-              <Route path="/gif"  render={() => <Home {...this.state}/>} /> 
+              <Route path="/gif"  render={() => <Home />} /> 
               {/* <Route path="/" component= {App}/> */}
               </Switch>
            
